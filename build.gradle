@@ -1,0 +1,30 @@
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    testImplementation (
+            'org.junit.jupiter:junit-jupiter:5.9.1',
+            'com.codeborne:selenide:6.9.0'
+    )
+}
+
+test {
+    useJUnitPlatform()
+}
+
+help {
+    doFirst {
+        println "**********************"
+        println "https://github.com/glazmaikh/demoqa-tests_16"
+        println "**********************"
+    }
+}
