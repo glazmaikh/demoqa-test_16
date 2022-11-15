@@ -4,11 +4,26 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
+import java.io.File;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class PracticeFormTests {
+    private final String FIRST_NAME = "Alexandra";
+    private final String LAST_NAME = "Petrova";
+    private final String EMAIL = "egorsemenov666@gmail.com";
+    private final String GENDER = "Female";
+    private final String MOBILE = "1234567891";
+    private final String BIRTHDAY = "01 January,1989";
+    private final String SUBJECTS = "Maths";
+    private final String HOBBIES = "Music";
+    private final String PICTURES = "1.png";
+    private final String ADDRESS = "asdasd";
+    private final String STATE_AND_CITY = "Uttar Pradesh Agra";
+
+
     @BeforeAll
     static void setUp() {
         System.setProperty("webdriver.chrome.driver", "C://webdrivers/chromedriver.exe");
@@ -34,9 +49,9 @@ public class PracticeFormTests {
         $(".react-datepicker__month-select").selectOption("January");
         $(byXpath("//div[@class='react-datepicker__day react-datepicker__day--001 react-datepicker__day--weekend']")).click();
         // todo пропадает значение subjects после выделения любого другого input
-        $("#subjectsInput").val("iordan");
+        $("#subjectsInput").val("Maths").pressEnter();
         $$(".custom-checkbox .custom-control-label").findBy(text("Music")).click();
-//        $(".form-file #uploadPicture").click();
+        $("#uploadPicture").uploadFile(new File("C:\\Users\\serge\\OneDrive\\Изображения\\1.png"));
 //        $("#uploadPicture").val("C:\\fakepath\\1.png");
         $("#currentAddress").click();
         $("#currentAddress").val("asdasd");
@@ -46,40 +61,17 @@ public class PracticeFormTests {
         $("#react-select-4-option-0").click();
         $("#submit").click();
 
-
-
-//        $(".react-datepicker__month-select").selectOption("January");
-//        $(".react-datepicker__day--001:nth-child(2)").click();
-
-//
-//
-//
-//        $(".react-datepicker__week").$(".react-datepicker__day react-datepicker__day--001").click();
-//        $(".react-datepicker__month .react-datepicker__week").$(".react-datepicker__day react-datepicker__day--001").click();
-//        $(".react-datepicker__day--001:nth-child(2)").click();
-
-
-
-        //$(".custom-radio:nth-child(1) > .custom-control-label").click();
-//        $("#gender-radio-1").click();
-//        //$("#output").shouldBe(visible);
-//        $(by("data-testid", "email")).setValue("1");
-//        $("[data-testid=email]").setValue("1");
-//
-//        $("[id=email]").setValue("1");
-//        $("#email").setValue("1");
-//        $x("//*[@id=email]").setValue("1");
-//
-//        $("[name=email]").setValue("1");
-//        $(byName("email")).setValue("1");
-//
-//        $("[class=login_form_input_box]").setValue("1");
-//        $(".login_form_input_box").setValue("1");
-//
-//        $(".login_form_input_box .inputtext").setValue("1");
-//        $(".login_form_input_box").$(".inputtext").setValue("1");
-//
-//        $("//div[@text='Hello qa.guru']");
-//        $(byText("Hello qa.guru"));
+        $(".table-responsive").shouldBe(visible);
+        $(".table-responsive").shouldHave(text(FIRST_NAME));
+        $(".table-responsive").shouldHave(text(LAST_NAME));
+        $(".table-responsive").shouldHave(text(EMAIL));
+        $(".table-responsive").shouldHave(text(GENDER));
+        $(".table-responsive").shouldHave(text(MOBILE));
+        $(".table-responsive").shouldHave(text(BIRTHDAY));
+        $(".table-responsive").shouldHave(text(SUBJECTS));
+        $(".table-responsive").shouldHave(text(HOBBIES));
+        $(".table-responsive").shouldHave(text(PICTURES));
+        $(".table-responsive").shouldHave(text(ADDRESS));
+        $(".table-responsive").shouldHave(text(STATE_AND_CITY));
     }
 }
