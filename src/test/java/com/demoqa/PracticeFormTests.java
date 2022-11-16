@@ -1,3 +1,5 @@
+package com.demoqa;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,15 +13,16 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class PracticeFormTests {
-    private final String FIRST_NAME = "Alexandra";
-    private final String LAST_NAME = "Petrova";
+    private String path = "src/test/resources/1.jpg";
+    private final String FIRST_NAME = "Egor";
+    private final String LAST_NAME = "Semenov";
     private final String EMAIL = "egorsemenov666@gmail.com";
-    private final String GENDER = "Female";
+    private final String GENDER = "Male";
     private final String MOBILE = "1234567891";
     private final String BIRTHDAY = "01 January,1989";
     private final String SUBJECTS = "Maths";
     private final String HOBBIES = "Music";
-    private final String PICTURES = "1.png";
+    private final String PICTURES = "1.jpg";
     private final String ADDRESS = "asdasd";
     private final String STATE_AND_CITY = "Uttar Pradesh Agra";
 
@@ -36,11 +39,10 @@ public class PracticeFormTests {
     @Test
     void fillFormTest() {
         open("/automation-practice-form");
-        $("#firstName").val("Alexandra");
-        $("#lastName").val("Petrova");
+        $("#firstName").val("Egor");
+        $("#lastName").val("Semenov");
         $("#userEmail").val("egorsemenov666@gmail.com");
-        //$(".custom-radio").$(byText("Male")).click();
-        $$(".custom-radio .custom-control-label").findBy(text("Female")).click();
+        $$(".custom-radio .custom-control-label").find(text("Male")).click();
         $("#userNumber").val("1234567891");
         $("#dateOfBirthInput").click();
         $(".react-datepicker__year-select").click();
@@ -48,11 +50,9 @@ public class PracticeFormTests {
         $(".react-datepicker__month-select").click();
         $(".react-datepicker__month-select").selectOption("January");
         $(byXpath("//div[@class='react-datepicker__day react-datepicker__day--001 react-datepicker__day--weekend']")).click();
-        // todo пропадает значение subjects после выделения любого другого input
         $("#subjectsInput").val("Maths").pressEnter();
-        $$(".custom-checkbox .custom-control-label").findBy(text("Music")).click();
-        $("#uploadPicture").uploadFile(new File("C:\\Users\\serge\\OneDrive\\Изображения\\1.png"));
-//        $("#uploadPicture").val("C:\\fakepath\\1.png");
+        $$(".custom-checkbox .custom-control-label").find(text("Music")).click();
+        $("#uploadPicture").uploadFile(new File(path));
         $("#currentAddress").click();
         $("#currentAddress").val("asdasd");
         $("#state").click();
@@ -73,5 +73,6 @@ public class PracticeFormTests {
         $(".table-responsive").shouldHave(text(PICTURES));
         $(".table-responsive").shouldHave(text(ADDRESS));
         $(".table-responsive").shouldHave(text(STATE_AND_CITY));
+        $("#closeLargeModal").shouldHave(enabled).click();
     }
 }
