@@ -49,7 +49,7 @@ public class PracticeFormTests {
         $(".react-datepicker__day--030:not(.react-datepicker__day--outside-month)").click();
         $("#subjectsInput").val(SUBJECTS).pressEnter();
         $("#hobbiesWrapper").$(byText("Music")).click();
-        $("#uploadPicture").uploadFromClasspath("1.jpg");
+        $("#uploadPicture").uploadFromClasspath("img/1.jpg");
         $("#currentAddress").click();
         $("#currentAddress").val(ADDRESS);
         $("#state").click();
