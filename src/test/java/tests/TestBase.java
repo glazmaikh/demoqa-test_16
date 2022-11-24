@@ -7,6 +7,10 @@ import pages.RegistrationPage;
 public class TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
 
+//    static String userName = "Alex",
+//            lastName = "Egorov",
+//            userEmail = "alex@gmail.com";
+
     @BeforeAll
     static void setUp() {
         System.setProperty("webdriver.chrome.driver", "C://webdrivers/chromedriver.exe");
