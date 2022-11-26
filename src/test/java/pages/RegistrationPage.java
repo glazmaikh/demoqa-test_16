@@ -4,9 +4,12 @@ import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 import pages.components.ResultModalComponent;
 
+import java.io.File;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static tests.TestBase.randomElement;
 
 public class RegistrationPage {
     private final String TITLE_TEXT = "Student Registration Form";
@@ -75,8 +78,8 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setUploadPicture(String path) {
-        uploadPictureInput.uploadFromClasspath(path);
+    public RegistrationPage setUploadPicture(File file) {
+        uploadPictureInput.uploadFile(file);
         return this;
     }
 
@@ -90,6 +93,7 @@ public class RegistrationPage {
         stateInput.click();
         $("#stateCity-wrapper").$(byText(state)).click();
         cityInput.click();
+        city = randomElement();
         $("#stateCity-wrapper").$(byText(city)).click();
         return this;
     }
