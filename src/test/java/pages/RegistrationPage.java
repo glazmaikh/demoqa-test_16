@@ -16,19 +16,19 @@ public class RegistrationPage {
     private final CalendarComponent calendarComponent = new CalendarComponent();
     private final ResultModalComponent resultModalComponent = new ResultModalComponent();
     private SelenideElement
-            firstNameInput = $("#firstName"),
-            lastNameInput = $("#lastName"),
-            userEmailInput = $("#userEmail"),
-            genderInput = $("#genterWrapper"),
-            userNumberInput = $("#userNumber"),
-            dateOfBirthInput = $("#dateOfBirthInput"),
-            subjectsInput = $("#subjectsInput"),
-            hobbiesInput = $("#hobbiesWrapper"),
-            uploadPictureInput = $("#uploadPicture"),
-            currentAdressInput = $("#currentAddress"),
-            stateInput = $("#state"),
-            cityInput = $("#city"),
-            submitButton = $("#submit");
+            firstNameInput = $("#firstName");
+    private SelenideElement lastNameInput = $("#lastName");
+    private SelenideElement userEmailInput = $("#userEmail");
+    private SelenideElement genderInput = $("#genterWrapper");
+    private SelenideElement userNumberInput = $("#userNumber");
+    private SelenideElement dateOfBirthInput = $("#dateOfBirthInput");
+    private SelenideElement subjectsInput = $("#subjectsInput");
+    private SelenideElement hobbiesInput = $("#hobbiesWrapper");
+    private SelenideElement uploadPictureInput = $("#uploadPicture");
+    private SelenideElement currentAdressInput = $("#currentAddress");
+    private SelenideElement stateInput = $("#state");
+    private SelenideElement cityInput = $("#city");
+    private SelenideElement submitButton = $("#submit");
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
