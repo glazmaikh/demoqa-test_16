@@ -1,10 +1,6 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
@@ -21,15 +17,6 @@ public class PracticeFormTests extends TestBase {
     private final String PICTURES = "1.jpg";
     private final String ADDRESS = "asdasd";
     private final String STATE_AND_CITY = "NCR Delhi";
-
-    @BeforeAll
-    static void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C://webdrivers/chromedriver.exe");
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1932x1160";
-        Configuration.browserPosition = "-6x0";
-        Configuration.holdBrowserOpen = true;
-    }
 
     @Test
     void fillFormTest() {
