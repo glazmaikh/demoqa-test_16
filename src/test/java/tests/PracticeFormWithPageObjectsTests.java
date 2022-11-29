@@ -2,7 +2,12 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 
-public class PracticeFormWithPageObjectsTests extends TestBase {
+import java.io.IOException;
+
+public class PracticeFormWithPageObjectsTests extends RegistrationFormData {
+    public PracticeFormWithPageObjectsTests() throws IOException {
+    }
+
     @Test
     void fillFormTest() {
         registrationPage.openPage()
@@ -17,7 +22,7 @@ public class PracticeFormWithPageObjectsTests extends TestBase {
                 .setUploadPicture(picture)
                 .setCurrentAdress(address)
                 .setStateAndCity(state, city)
-                .getSubmit();
+                .clickSubmitButton();
 
         registrationPage.verifyResultModalAppears()
                 .verifyResult("Student Name", firstName + " " + lastName)

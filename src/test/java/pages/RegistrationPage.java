@@ -5,18 +5,19 @@ import pages.components.CalendarComponent;
 import pages.components.ResultModalComponent;
 
 import java.io.File;
+import java.io.IOException;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static tests.TestBase.randomElement;
+import static tests.RegistrationFormData.randomElement;
+
 
 public class RegistrationPage {
     private final String TITLE_TEXT = "Student Registration Form";
     private final CalendarComponent calendarComponent = new CalendarComponent();
     private final ResultModalComponent resultModalComponent = new ResultModalComponent();
-    private SelenideElement
-            firstNameInput = $("#firstName");
+    private SelenideElement firstNameInput = $("#firstName");
     private SelenideElement lastNameInput = $("#lastName");
     private SelenideElement userEmailInput = $("#userEmail");
     private SelenideElement genderInput = $("#genterWrapper");
@@ -29,6 +30,9 @@ public class RegistrationPage {
     private SelenideElement stateInput = $("#state");
     private SelenideElement cityInput = $("#city");
     private SelenideElement submitButton = $("#submit");
+
+    public RegistrationPage() throws IOException {
+    }
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
@@ -98,7 +102,7 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage getSubmit() {
+    public RegistrationPage clickSubmitButton() {
         $("#submit").click();
         return this;
     }
