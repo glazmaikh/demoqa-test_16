@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
-public class wikiMotorsSearchTests {
+public class WikiMotorsSearchTests {
     @BeforeAll
     static void beforeAll() {
         System.setProperty("webdriver.chrome.driver", "C://webdrivers/chromedriver.exe");
