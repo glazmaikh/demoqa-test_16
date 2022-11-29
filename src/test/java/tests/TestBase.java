@@ -13,4 +13,5 @@ public class TestBase {
         Configuration.browserPosition = "-6x0";
         Configuration.holdBrowserOpen = true;
     }
+
 }

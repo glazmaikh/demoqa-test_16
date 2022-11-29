@@ -2,6 +2,8 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -17,6 +19,9 @@ public class PracticeFormTests extends TestBase {
     private final String PICTURES = "1.jpg";
     private final String ADDRESS = "asdasd";
     private final String STATE_AND_CITY = "NCR Delhi";
+
+    public PracticeFormTests() throws IOException {
+    }
 
     @Test
     void fillFormTest() {
