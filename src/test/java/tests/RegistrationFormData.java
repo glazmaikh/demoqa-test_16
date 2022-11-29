@@ -2,8 +2,6 @@ package tests;
 
 import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
-import org.junit.jupiter.api.AfterEach;
-import pages.RegistrationPage;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,8 +15,8 @@ import java.util.Random;
 
 import static com.codeborne.selenide.Selenide.$$x;
 
-public class RegistrationFormData extends TestBase {
-    RegistrationPage registrationPage = new RegistrationPage();
+public class RegistrationFormData {
+    static Random random = new Random();
     Faker deFaker = new Faker(new Locale("de"));
     String[] gendersArray = {"Male", "Female", "Other"};
     String[] subjectsArray = {"Arts", "Maths", "English", "History"};
@@ -45,7 +43,6 @@ public class RegistrationFormData extends TestBase {
     public RegistrationFormData() throws IOException {
     }
 
-
     String getYear() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
         return year = sdf.format(deFaker.date().birthday());
@@ -66,25 +63,13 @@ public class RegistrationFormData extends TestBase {
         return new File(sb.toString());
     }
 
-    static int randomInt(int min, int max) {
-        Random random = new Random();
-        return random.nextInt(max - min) + min;
-    }
-
-    static String randomListItem(String[] values) {
-        int index = randomInt(0, values.length);
+    String randomListItem(String[] values) {
+        int index = random.nextInt(values.length);
         return values[index];
     }
 
     public static String randomElement() {
-        if (city == null) {
-            city = cityList.get(new Random().nextInt(cityList.size())).getText();
-        }
+        city = cityList.get(random.nextInt(cityList.size())).getText();
         return city;
-    }
-
-    @AfterEach
-    public void cleanUpFiles() {
-        picture.delete();
     }
 }

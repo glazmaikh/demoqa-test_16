@@ -97,6 +97,7 @@ public class RegistrationPage {
         stateInput.click();
         $("#stateCity-wrapper").$(byText(state)).click();
         cityInput.click();
+        //todo lazy initialization))
         city = randomElement();
         $("#stateCity-wrapper").$(byText(city)).click();
         return this;
