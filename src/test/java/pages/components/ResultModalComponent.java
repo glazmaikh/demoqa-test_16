@@ -6,14 +6,14 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class ResultModalComponent {
-    public void verifyModalAppears() {
+    public void verifyResultModalAppears() {
         $(".modal-dialog").should(appear);
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
     }
 
     public void verifyResult(String key, String value) {
-        $(".table-responsive").$(byText(key)).parent()
+        $(".table-responsive").$(byText(key))
+                .parent()
                 .shouldHave(text(value));
     }
-
 }

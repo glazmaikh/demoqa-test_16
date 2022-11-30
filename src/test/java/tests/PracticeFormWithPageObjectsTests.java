@@ -6,9 +6,11 @@ import pages.RegistrationPage;
 
 import java.io.IOException;
 
+import static tests.TestData.pictureName;
+
 public class PracticeFormWithPageObjectsTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
-    RegistrationFormData formData = new RegistrationFormData();
+    TestData testData = new TestData();
 
     public PracticeFormWithPageObjectsTests() throws IOException {
     }
@@ -16,34 +18,34 @@ public class PracticeFormWithPageObjectsTests extends TestBase {
     @Test
     void fillFormTest() {
         registrationPage.openPage()
-                .setFirstNameInput(formData.firstName)
-                .setLastNameInput(formData.lastName)
-                .setUserEmailInput(formData.email)
-                .setGenderInput(formData.gender)
-                .setUserNumberInput(formData.mobile)
-                .setBirthDate(formData.day, formData.month, formData.year)
-                .setSubjectsInput(formData.subjects)
-                .setHobbiesInput(formData.hobbies)
-                .setUploadPicture(formData.picture)
-                .setCurrentAdress(formData.address)
-                .setStateAndCity(formData.state, RegistrationFormData.city)
+                .setFirstName(testData.firstName)
+                .setLastName(testData.lastName)
+                .setEmail(testData.email)
+                .setGender(testData.gender)
+                .setUserNumber(testData.number)
+                .setDateOfBirth(testData.day, testData.month, testData.year)
+                .setSubjects(testData.subject)
+                .setHobby(testData.hobby)
+                .setPicture(testData.picture)
+                .setCurrentAddress(testData.address)
+                .setStateAndCity(testData.state, testData.city)
                 .clickSubmitButton();
 
         registrationPage.verifyResultModalAppears()
-                .verifyResult("Student Name", formData.firstName + " " + formData.lastName)
-                .verifyResult("Student Email", formData.email)
-                .verifyResult("Gender", formData.gender)
-                .verifyResult("Mobile", formData.mobile)
-                .verifyResult("Date of Birth", formData.day + " " + formData.month + "," + formData.year)
-                .verifyResult("Subjects", formData.subjects)
-                .verifyResult("Hobbies", formData.hobbies)
-                .verifyResult("Picture", formData.pictureName)
-                .verifyResult("Address", formData.address)
-                .verifyResult("State and City", formData.state + " " + RegistrationFormData.city);
+                .verifyModal("Student Name", testData.firstName + " " + testData.lastName)
+                .verifyModal("Student Email", testData.email)
+                .verifyModal("Gender", testData.gender)
+                .verifyModal("Mobile", testData.number)
+                .verifyModal("Date of Birth", (testData.day + " " + testData.month + "," + testData.year))
+                .verifyModal("Subjects", testData.subject)
+                .verifyModal("Hobbies", testData.hobby)
+                .verifyModal("Picture", pictureName)
+                .verifyModal("Address", testData.address)
+                .verifyModal("State and City", testData.state + " " + testData.city);
     }
 
     @AfterEach
     void cleanUpFiles() {
-        formData.picture.delete();
+        testData.picture.delete();
     }
 }

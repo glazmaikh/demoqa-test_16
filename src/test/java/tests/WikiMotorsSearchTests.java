@@ -20,7 +20,6 @@ public class WikiMotorsSearchTests {
     static void beforeAll() {
         System.setProperty("webdriver.chrome.driver", "C://webdrivers/chromedriver.exe");
         Configuration.browserSize = "1932x1160";
-        Configuration.browserPosition = "-6x0";
         Configuration.holdBrowserOpen = true;
     }
 
