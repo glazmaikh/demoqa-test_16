@@ -1,4 +1,4 @@
-package tests;
+package utils;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Configuration;
@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
-public class WikiMotorsSearchTests {
+public class WikiMotorsSearchParameterizedTests {
     @BeforeAll
     static void beforeAll() {
         System.setProperty("webdriver.chrome.driver", "C://webdrivers/chromedriver.exe");

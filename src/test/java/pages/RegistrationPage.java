@@ -3,6 +3,8 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 import pages.components.ResultModalComponent;
+import pages.components.StateAndCityComponent;
+import pages.components.SubjectsInputComponent;
 import tests.TestBase;
 
 import java.io.File;
@@ -14,6 +16,8 @@ import static com.codeborne.selenide.Selenide.*;
 public class RegistrationPage extends TestBase {
     CalendarComponent calendarComponent = new CalendarComponent();
     ResultModalComponent resultModalComponent = new ResultModalComponent();
+    private final SubjectsInputComponent subjectsComponent = new SubjectsInputComponent();
+    private final StateAndCityComponent stateAndCityComponent = new StateAndCityComponent();
     private static final String TITLE_TEXT = "Student Registration Form";
     private final SelenideElement firstNameInput = $("#firstName");
     private final SelenideElement lastNameInput = $("#lastName");
@@ -109,5 +113,14 @@ public class RegistrationPage extends TestBase {
         return this;
     }
 
+    //for parameterized tests
+    public RegistrationPage setOneSubject(String value) {
+        subjectsComponent.setOneSubject(value);
+        return this;
+    }
 
+    public RegistrationPage shouldHaveValue(String value) {
+        subjectsComponent.shouldHaveValue(value);
+        return this;
+    }
 }
