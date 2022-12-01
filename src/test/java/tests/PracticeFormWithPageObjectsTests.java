@@ -2,9 +2,14 @@ package tests;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import pages.RegistrationPage;
 
 import java.io.IOException;
+import java.util.List;
 
 import static tests.TestData.pictureName;
 
@@ -44,8 +49,27 @@ public class PracticeFormWithPageObjectsTests extends TestBase {
                 .verifyModal("State and City", testData.state + " " + testData.city);
     }
 
+    @ValueSource(strings = {"Arts", "Maths", "English", "History"})
+    @ParameterizedTest(name = "check valid subjects data adding")
+    void subjectsInputTest(String arg) {
+        registrationPage.openPage()
+                .setOneSubject(arg)
+                .shouldHaveValue(arg);
+    }
+
+    @CsvFileSource(
+            resources = "/example1.csv"
+    )
+    @ParameterizedTest(name = "check if selected state {0} able and selected city {1}")
+    void stateAndCityTestCsvFileSource(String state, String city) {
+        registrationPage.openPage()
+                .setStateAndCity(state, city);
+    }
+
     @AfterEach
     void cleanUpFiles() {
         testData.picture.delete();
     }
+
+
 }
