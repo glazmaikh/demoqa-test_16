@@ -8,13 +8,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class TestData {
-
     static Faker faker = new Faker(new Locale("de"));
     static Random random = new Random();
     static String pictureName = faker.file().fileName("", null, null, null)
@@ -31,8 +27,8 @@ public class TestData {
     String hobby = getHobby();
     File picture = getPicture();
     String address = faker.address().streetAddress();
-    String city = getCity();
-    String state = getStateByCity(city);
+    String state = getState();
+    String city = getCity(state);
 
     public TestData() throws IOException {
     }
@@ -68,22 +64,18 @@ public class TestData {
         return new File(path + pictureName);
     }
 
-    public String getCity() {
-        String[] states = {"Delhi", "Agra", "Karnal", "Gurgaon", "Lucknow", "Panipat", "Jaipur", "Jaiselmer"};
+    public String getState() {
+        String[] states = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
         return getRandomArrayItem(states);
     }
 
-    public String getStateByCity(String value) {
-        Map<String, String> cityAndState = new HashMap<>();
-        cityAndState.put("Delhi", "NCR");
-        cityAndState.put("Gurgaon", "NCR");
-        cityAndState.put("Agra", "Uttar Pradesh");
-        cityAndState.put("Lucknow", "Uttar Pradesh");
-        cityAndState.put("Karnal", "Haryana");
-        cityAndState.put("Panipat", "Haryana");
-        cityAndState.put("Jaipur", "Rajasthan");
-        cityAndState.put("Jaiselmer", "Rajasthan");
-        return cityAndState.get(value);
+    public String getCity(String key) {
+        Map<String, String[]> cityList = new HashMap<>();
+        cityList.put("NCR", new String[] {"Delhi", "Gurgaon", "Noida"});
+        cityList.put("Uttar Pradesh", new String[] {"Agra", "Lucknow", "Merrut"});
+        cityList.put("Haryana", new String[] {"Karnal", "Panipat"});
+        cityList.put("Rajasthan", new String[] {"Jaipur", "Jaiselmer"});
+        return getRandomArrayItem(cityList.get(key));
     }
 
 
