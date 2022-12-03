@@ -3,7 +3,9 @@ package utils;
 import com.codeborne.pdftest.PDF;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.xlstest.XLS;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.CSVReader;
+import model.GlossEntry;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import temp.FilesLessonTests;
@@ -49,5 +51,18 @@ public class FilesParsingTests {
                 }
             }
         }
+    }
+
+    @Test
+    void jsonParsFromJecksonTest() throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        File json = new File("src/test/resources/glossEntry.json");
+        GlossEntry glossEntry = mapper.readValue(json, GlossEntry.class);
+        assertThat(glossEntry.GlossTerm).isEqualTo("Standard Generalized Markup Language");
+        assertThat(glossEntry.ID).contains("SG");
+        assertThat(glossEntry.Acronym).isEqualTo(123);
+        assertThat(glossEntry.Abbrev).isTrue();
+        assertThat(glossEntry.items.get(0)).isEqualTo("menu");
+        assertThat(glossEntry.Wind.title).isEqualTo("text");
     }
 }

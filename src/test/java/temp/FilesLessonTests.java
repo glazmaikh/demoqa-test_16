@@ -3,7 +3,10 @@ package temp;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.xlstest.XLS;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.opencsv.CSVReader;
+import model.Glossary;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -110,6 +113,31 @@ public class FilesLessonTests {
             while((length = fis.read(bytes)) >= 0) {
                 zos.write(bytes, 0, length);
             }
+        }
+    }
+
+    @Test
+    void jsonParsTest() throws Exception {
+        Gson gson = new Gson();
+        try (InputStream resource = cl.getResourceAsStream("temp/glossary.json");
+             InputStreamReader reader = new InputStreamReader(resource)
+        ) {
+            JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
+            assertThat(jsonObject.get("title").getAsString()).isEqualTo("example glossary");
+            assertThat(jsonObject.get("GlossDiv").getAsJsonObject().get("flag").getAsBoolean()).isTrue();
+        }
+    }
+
+    @Test
+    void jsonParsImprovedTest() throws Exception {
+        Gson gson = new Gson();
+        try (InputStream resource = cl.getResourceAsStream("temp/glossary.json");
+             InputStreamReader reader = new InputStreamReader(resource)
+        ) {
+            Glossary glossaryObject = gson.fromJson(reader, Glossary.class);
+            assertThat(glossaryObject.title).isEqualTo("example glossary");
+            assertThat(glossaryObject.glossDiv.title).isEqualTo("S");
+            assertThat(glossaryObject.glossDiv.flag).isTrue();
         }
     }
 }
