@@ -25,13 +25,19 @@ public class TestData {
     String year = String.valueOf(faker.number().numberBetween(1900, 2100));
     String subject = getSubject();
     String hobby = getHobby();
-    File picture = getPicture();
+    static File picture;
+
+    static {
+        try {
+            picture = getPicture();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     String address = faker.address().streetAddress();
     String state = getState();
     String city = getCity(state);
-
-    public TestData() throws IOException {
-    }
 
     public String getGender() {
         String[] genderArray = {"Male", "Female", "Other"};
@@ -57,7 +63,7 @@ public class TestData {
         return getRandomArrayItem(hobbiesArray);
     }
 
-    File getPicture() throws IOException {
+    static File getPicture() throws IOException {
         String path = "src/test/resources/";
         Path newFilePath = Paths.get(path + pictureName);
         Files.createFile(newFilePath);

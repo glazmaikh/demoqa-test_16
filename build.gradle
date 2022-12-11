@@ -61,6 +61,13 @@ tasks.withType(Test) {
         }
     }
 }
+
+task feature_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags("automation-practice-form")
+    }
+}
+
 help {
     doFirst {
         println "**********************"

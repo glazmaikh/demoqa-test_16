@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.components.CalendarComponent;
 import pages.components.ResultModalComponent;
@@ -12,6 +13,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 import static tests.TestData.pictureName;
 
+@Tag("automation-practice-form")
 public class PracticeFormTests extends TestBase {
     TestData testData = new TestData();
     CalendarComponent calendarComponent = new CalendarComponent();

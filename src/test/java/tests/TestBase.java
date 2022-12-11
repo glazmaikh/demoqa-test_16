@@ -11,6 +11,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class TestBase {
 
+
     @BeforeAll
     static void setUp() {
         Configuration.baseUrl = "https://demoqa.com";
@@ -34,6 +35,7 @@ public class TestBase {
         Attach.pageSource();
         Attach.browserConsoleLogs();
         Attach.addVideo();
+        TestData.picture.delete();
     }
 
 }
