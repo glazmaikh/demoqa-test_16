@@ -11,10 +11,10 @@ public class TestBase {
 
     @BeforeAll
     static void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C://webdrivers/chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "C://webdrivers/chromedriver.exe");
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1932x1160";
-        Configuration.holdBrowserOpen = true;
+        //Configuration.holdBrowserOpen = true;
     }
 
     @BeforeEach
