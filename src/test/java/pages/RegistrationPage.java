@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import pages.components.CalendarComponent;
 import pages.components.ResultModalComponent;
 import pages.components.StateAndCityComponent;
@@ -33,6 +34,7 @@ public class RegistrationPage extends TestBase {
     private final SelenideElement cityInput = $("#city");
 
 
+    @Step("Открываем страницу practice-form")
     public RegistrationPage openPage() {
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text(TITLE_TEXT));
