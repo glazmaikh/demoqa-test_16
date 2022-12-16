@@ -66,7 +66,5 @@ public class PracticeFormTests extends TestBase {
                     .verifyResult("State and City", testData.state + " " + testData.city);
             $("#closeLargeModal").shouldHave(appear).click();
         });
-
-
     }
 }
