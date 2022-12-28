@@ -13,11 +13,7 @@ public class TestBase {
 
     @BeforeAll
     static void setUp() {
-        // Configuration.baseUrl = "https://demoqa.com";
-        Configuration.baseUrl = System.getProperty("base_url", "https://demoqa.com");
-        Configuration.browser = System.getProperty("browser", "chrome");
-        Configuration.browserVersion = System.getProperty("browser_ver", "100.0");
-        Configuration.browserSize = System.getProperty("screen_resolution", "1920x1080");
+        Configuration.baseUrl = "https://demoqa.com/";
         Configuration.remote = System.getProperty("remote", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -37,7 +33,6 @@ public class TestBase {
         Attach.pageSource();
         Attach.browserConsoleLogs();
         Attach.addVideo();
-        TestData.picture.delete();
     }
 
 }
